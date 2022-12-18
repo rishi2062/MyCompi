@@ -22,26 +22,26 @@
             android:layout_margin="5dp"
             app:cornerRadius="10dp"
             android:text="Add Image"
-            android:backgroundTint="#272626"
-            android:shadowColor="#171717"
+            android:backgroundTint="#101112"
+            android:shadowColor="#D83F34"
             app:icon="@drawable/ic_addphoto"
             app:iconPadding="4dp"
             app:iconSize="19dp"/>
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/recogniseTextButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            app:cornerRadius="10dp"
-            android:text="Text Recognize"
-            android:backgroundTint="#272626"
-            android:shadowColor="#171717"
-            app:icon="@drawable/ic_textrecognise"
-            app:iconPadding="4dp"
-            app:iconSize="19dp"/>
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/recogniseTextButton"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_margin="5dp"-->
+<!--            app:cornerRadius="10dp"-->
+<!--            android:text="Text Recognize"-->
+<!--            android:backgroundTint="#272626"-->
+<!--            android:shadowColor="#171717"-->
+<!--            app:icon="@drawable/ic_textrecognise"-->
+<!--            app:iconPadding="4dp"-->
+<!--            app:iconSize="19dp"/>-->
 
     </LinearLayout>
    <ScrollView
@@ -71,7 +71,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:soundEffectsEnabled="true"
-                   android:layout_marginStart="60dp"
+                   android:layout_marginStart="40dp"
                    android:clickable="true"
                    android:focusable="true"
                    android:checked="false"/>
@@ -90,10 +90,27 @@
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
+               android:text="Detected Language :"
+               android:textSize="20sp"
+               android:textStyle="bold"
+               android:textColor="#0B0B0E"/>
+
+           <TextView
+               android:id="@+id/detectedText"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textColor="@color/black"
+               android:textIsSelectable="true"
+               android:textSize="20sp"
+               tools:ignore="SpeakableTextPresentCheck" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
                android:text="Recognized Text :"
                android:textSize="20sp"
                android:textStyle="bold"
-               android:textColor="@color/black"/>
+               android:textColor="#050609"/>
 
            <EditText
                android:id="@+id/recogniseText"
@@ -106,9 +123,9 @@
                android:id="@+id/translate"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text="Translate"
+               android:text="@string/translate"
                app:cornerRadius="10dp"
-               android:backgroundTint="@color/black"
+               android:backgroundTint="#060707"
               />
 
            <TextView
@@ -118,7 +135,7 @@
                android:text="Translated Text :"
                android:textSize="20sp"
                android:textStyle="bold"
-               android:textColor="@color/black"/>
+               android:textColor="#0B0C12"/>
 
            <TextView
                android:id="@+id/translatedText"
@@ -128,6 +145,8 @@
                android:textIsSelectable="true"
                android:textSize="20sp"
                tools:ignore="SpeakableTextPresentCheck" />
+
+
 
            <LinearLayout
                android:layout_width="match_parent"
@@ -147,22 +166,27 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:soundEffectsEnabled="true"
-                   android:layout_marginStart="50dp"
+                   android:layout_marginStart="40dp"
                    android:clickable="true"
+                   android:textColorHighlight="@color/black"
+                   android:outlineAmbientShadowColor="@color/black"
+                   app:useMaterialThemeColors="true"
+                   android:textColor="@color/teal_700"
+                   android:shadowColor="@color/teal_700"
                    android:focusable="true"
                    android:checked="false"/>
 
 
            </LinearLayout>
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="@string/if_image_is_in_hindi_toggle_switch_first"
-               android:textColor="@color/black"
-               android:layout_marginTop="10dp"
-               android:textIsSelectable="true"
-               android:textStyle="italic|bold"
-               android:textSize="16sp"/>
+<!--           <TextView-->
+<!--               android:layout_width="wrap_content"-->
+<!--               android:layout_height="wrap_content"-->
+<!--               android:text="@string/if_image_is_in_hindi_toggle_switch_first"-->
+<!--               android:textColor="@color/black"-->
+<!--               android:layout_marginTop="10dp"-->
+<!--               android:textIsSelectable="true"-->
+<!--               android:textStyle="italic|bold"-->
+<!--               android:textSize="16sp"/>-->
        </LinearLayout>
 
    </ScrollView>

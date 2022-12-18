@@ -6,19 +6,13 @@ import android.app.ProgressDialog
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.Menu
 import android.widget.PopupMenu
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.requestPermissions
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import com.example.mycompi.databinding.ActivityMainBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.mlkit.common.model.DownloadConditions
@@ -32,7 +26,8 @@ import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.TextRecognizer
 import com.google.mlkit.vision.text.devanagari.DevanagariTextRecognizerOptions
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
-import java.io.File
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -45,25 +40,29 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressDialog: ProgressDialog
     private lateinit var textRecogniser : TextRecognizer
     private lateinit var textRecogniserHindi : TextRecognizer
+    private lateinit var textToSpeech: TextToSpeech
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
+      //  binding.speakButton.setOnClickListener{speakOut()}
         Toast.makeText(this,"If Image is in hindi toggle switch first , படம் ஹிந்தியில் இருந்தால் முதலில் மாறவும்",Toast.LENGTH_LONG).show()
         binding.toggleLanguage.setOnClickListener{
             if(binding.toggleLanguage.isChecked)
             {
                 binding.addImage.text = "படத்தைச் சேர்க்கவும்"
                 binding.translate.text = "மொழிபெயர்"
-                binding.recogniseTextButton.text = "உரையை அங்கீகரிக்கவும்"
+              //  binding.recogniseTextButton.text = "உரையை அங்கீகரிக்கவும்"
 
             }
             else if(!binding.toggleLanguage.isChecked){
                 binding.translate.text = "Translate"
                 binding.addImage.text = "Add Image"
-                binding.recogniseTextButton.text = "Text Recognize"
+              //  binding.recogniseTextButton.text = "Text Recognize"
             }
         }
 
@@ -78,14 +77,14 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        binding.recogniseTextButton.setOnClickListener {
-            if(imageUri == null){
-                Toast.makeText(this,"Check",Toast.LENGTH_SHORT).show()
-            }
-            else{
-                recognizeTextFromImage()
-            }
-        }
+//        binding.recogniseTextButton.setOnClickListener {
+//            if(imageUri == null){
+//                Toast.makeText(this,"Check",Toast.LENGTH_SHORT).show()
+//            }
+//            else{
+//                recognizeTextFromImage()
+//            }
+//        }
 
         binding.translate.setOnClickListener {
             text = binding.recogniseText.text.toString()
@@ -103,7 +102,24 @@ class MainActivity : AppCompatActivity() {
                         if(languageCode.equals("hi")){
                             flag = true
                         }
-                        //Toast.makeText(this,"Language : / மொழி : $identifier",Toast.LENGTH_LONG).show()
+                        Toast.makeText(this,"Language : / மொழி : $identifier",Toast.LENGTH_LONG).show()
+                        if(identifier.equals("hi")){
+
+                            binding.detectedText.text = "Hindi"}
+                        else  if(identifier.equals("en")){
+
+                            binding.detectedText.text = "English"}
+                        else  if(identifier.equals("fr")){
+
+                            binding.detectedText.text = "French"}
+                        else  if(identifier.equals("sp")){
+
+                            binding.detectedText.text = "Spanish"}
+                        else  if(identifier.equals("es")){
+
+                            binding.detectedText.text = "Espanol"}
+                        else{
+                        binding.detectedText.text = identifier}
                         Log.i(TAG, "Language: $identifier")
                         if(text.isNotEmpty()){
                             val options = TranslatorOptions.Builder()
@@ -146,6 +162,16 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this,"Check the text",Toast.LENGTH_SHORT).show()
                 }
         }
+
+
+
+
+
+        /////////////////////////////
+
+
+        ///////////////////////
+
 
     }
 
@@ -247,6 +273,12 @@ class MainActivity : AppCompatActivity() {
         if(resultCode == Activity.RESULT_OK && requestCode == ImagePicker.REQUEST_CODE){
             imageUri = data?.data
             binding.ImageRecognistion.setImageURI(data?.data)
+            if(imageUri == null){
+                Toast.makeText(this,"Check",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                recognizeTextFromImage()
+            }
         }
     }
 

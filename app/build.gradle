@@ -50,6 +50,7 @@ dependencies {
     implementation 'com.google.mlkit:language-id:17.0.4'
     implementation 'com.google.mlkit:text-recognition:16.0.0-beta6'
     implementation 'com.google.mlkit:text-recognition-devanagari:16.0.0-beta6'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
 
     //implementation 'com.google.android.gms:play-services-mlkit-text-recognition:18.0.2'
     //implementation 'com.github.florent37:inline-activity-result-kotlin:1.0.4'

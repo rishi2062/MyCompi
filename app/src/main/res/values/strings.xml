@@ -3,4 +3,5 @@
     <string name="add_image">add image</string>
     <string name="text_recognise">Text Recognise</string>
     <string name="if_image_is_in_hindi_toggle_switch_first">If Image is in hindi toggle switch first , படம் ஹிந்தியில் இருந்தால் முதலில் மாறவும்</string>
+    <string name="translate">Translate</string>
 </resources>
